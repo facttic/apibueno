@@ -14,9 +14,9 @@ from ...utils import httputils
 from . import LocationService
 
 
-class JhuLocationService(LocationService):
+class LocalLocationService(LocationService):
     """
-    Service for retrieving locations from Johns Hopkins CSSE (https://github.com/CSSEGISandData/COVID-19).
+    Service for retrieving locations from local repository(https://github.com/facttic/apibueno).
     """
 
     async def get_all(self):
@@ -35,7 +35,7 @@ class JhuLocationService(LocationService):
 
 # Base URL for fetching category.
 BASE_URL = (
-    "https://raw.githubusercontent.com/CSSEGISandData/2019-nCoV/master/csse_covid_19_data/csse_covid_19_time_series/"
+    "https://raw.githubusercontent.com/facttic/apibueno/9-consume-local-data/data/"
 )
 
 
@@ -52,7 +52,7 @@ async def get_category(category):
     category = category.lower()
 
     # URL to request data from.
-    url = BASE_URL + "time_series_covid19_%s_global.csv" % category
+    url = BASE_URL + "time_series_%s.csv" % category
 
     # Request the data
     async with httputils.CLIENT_SESSION.get(url) as response:
@@ -101,7 +101,7 @@ async def get_category(category):
         "locations": locations,
         "latest": latest,
         "last_updated": datetime.utcnow().isoformat() + "Z",
-        "source": "https://github.com/ExpDev07/coronavirus-tracker-api",
+        "source": "https://github.com/facttic/apibueno",
     }
 
 
