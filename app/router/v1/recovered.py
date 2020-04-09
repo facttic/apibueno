@@ -1,5 +1,5 @@
 """app.router.v1.recovered.py"""
-from ...services.location.jhu import get_category
+from ...services.location.local import get_category
 from . import V1
 
 
