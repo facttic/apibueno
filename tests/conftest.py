@@ -134,3 +134,20 @@ def mocked_strptime_isoformat(*args, **kwargs):
     strformat = args[1]
 
     return DateTimeStrpTime(date, strformat)
+
+def mocked_dict_reader(*args, **kwargs):
+    """Mock csv.DictReader resulting lines
+    """
+
+    category = args[0]
+    BASE_DIR = (
+        "tests/example_data/"
+    )
+    dir = BASE_DIR + "time_series_%s.csv" % category
+
+    # Open the file
+    with open(dir, mode='r') as csv_file:
+        # Parse the CSV.
+        data = csv.DictReader(csv_file)
+    
+    return data

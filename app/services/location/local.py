@@ -10,7 +10,6 @@ from ...location import TimelinedLocation
 from ...timeline import Timeline
 from ...utils import countries
 from ...utils import date as date_util
-from ...utils import httputils
 from . import LocationService
 
 
