@@ -1,6 +1,10 @@
 # API - Bueno
 
-Este proyecto está organizado en el marco de [Hacktic](https://hackdash.org/projects/5e8b6b87875b954b4a1d13fa) una Hackaton dónde participan múltiples cooperativas de la federación Facttic.
+> Este proyecto está organizado en el marco de [Hacktic](https://hackdash.org/projects/5e8b6b87875b954b4a1d13fa) una Hackaton dónde participan múltiples cooperativas de [Facttic](https://facttic.org.ar/).
+
+Basada en [Coronavirus Tracker API](https://github.com/ExpDev07/coronavirus-tracker-api)
+
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 
 ## Descripción: API sobre coronavirus en Argentina
 
@@ -40,8 +44,6 @@ Esta información puede cambiar durante el transcurso del hackaton
 #### Fuentes de datos
 - [Wikipedia Coronavirus Argentina](https://es.wikipedia.org/wiki/Pandemia_de_enfermedad_por_coronavirus_de_2020_en_Argentina)
 
+## License
 
-
-
-
-
+See [LICENSE.md](LICENSE.md) for the license
