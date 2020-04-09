@@ -1,4 +1,4 @@
-"""app.services.location.jhu.py"""
+"""app.services.location.local.py"""
 import csv
 from datetime import datetime
 
@@ -10,13 +10,12 @@ from ...location import TimelinedLocation
 from ...timeline import Timeline
 from ...utils import countries
 from ...utils import date as date_util
-from ...utils import httputils
 from . import LocationService
 
 
-class JhuLocationService(LocationService):
+class LocalLocationService(LocationService):
     """
-    Service for retrieving locations from Johns Hopkins CSSE (https://github.com/CSSEGISandData/COVID-19).
+    Service for retrieving locations from local repository(https://github.com/facttic/apibueno).
     """
 
     async def get_all(self):
@@ -33,9 +32,9 @@ class JhuLocationService(LocationService):
 # ---------------------------------------------------------------
 
 
-# Base URL for fetching category.
-BASE_URL = (
-    "https://raw.githubusercontent.com/CSSEGISandData/2019-nCoV/master/csse_covid_19_data/csse_covid_19_time_series/"
+# Base DIR for fetching category.
+BASE_DIR = (
+    "app/data/"
 )
 
 
@@ -51,15 +50,13 @@ async def get_category(category):
     # Adhere to category naming standard.
     category = category.lower()
 
-    # URL to request data from.
-    url = BASE_URL + "time_series_covid19_%s_global.csv" % category
+    # DIR to get data from.
+    dir = BASE_DIR + "time_series_%s.csv" % category
 
-    # Request the data
-    async with httputils.CLIENT_SESSION.get(url) as response:
-        text = await response.text()
-
-    # Parse the CSV.
-    data = list(csv.DictReader(text.splitlines()))
+    # Open the file
+    with open(dir, mode='r') as csv_file:
+        # Parse the CSV.
+        data = list(csv.DictReader(csv_file))
 
     # The normalized locations.
     locations = []
@@ -101,7 +98,7 @@ async def get_category(category):
         "locations": locations,
         "latest": latest,
         "last_updated": datetime.utcnow().isoformat() + "Z",
-        "source": "https://github.com/ExpDev07/coronavirus-tracker-api",
+        "source": "https://github.com/facttic/apibueno",
     }
 
 

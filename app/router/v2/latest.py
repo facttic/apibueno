@@ -7,7 +7,7 @@ from . import V2
 
 
 @V2.get("/latest", response_model=Latest)
-async def get_latest(request: Request, source: Sources = "jhu"):  # pylint: disable=unused-argument
+async def get_latest(request: Request, source: Sources = "local"):  # pylint: disable=unused-argument
     """
     Getting latest amount of total confirmed cases, deaths, and recoveries.
     """

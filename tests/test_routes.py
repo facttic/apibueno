@@ -8,8 +8,8 @@ from async_asgi_testclient import TestClient
 
 from app.main import APP
 
-from .conftest import mocked_strptime_isoformat
-from .test_jhu import DATETIME_STRING
+from .conftest import mocked_strptime_isoformat, mocked_dict_reader
+from .test_local import DATETIME_STRING
 
 
 @pytest.mark.usefixtures("mock_client_session_class")
@@ -42,9 +42,11 @@ class FlaskRoutesTest(unittest.TestCase):
         state = "confirmed"
         expected_json_output = self.read_file_v1(state=state)
 
-        with mock.patch("app.services.location.jhu.datetime") as mock_datetime:
+        with mock.patch("app.services.location.local.datetime") as mock_datetime, \
+             mock.patch("app.services.location.local.csv") as mock_csv:
             mock_datetime.utcnow.return_value.isoformat.return_value = self.date
             mock_datetime.strptime.side_effect = mocked_strptime_isoformat
+            mock_csv.DictReader.return_value = mocked_dict_reader
             response = await self.asgi_client.get("/{}".format(state))
 
         return_data = response.json()
@@ -54,7 +56,7 @@ class FlaskRoutesTest(unittest.TestCase):
         state = "deaths"
         expected_json_output = self.read_file_v1(state=state)
 
-        with mock.patch("app.services.location.jhu.datetime") as mock_datetime:
+        with mock.patch("app.services.location.local.datetime") as mock_datetime:
             mock_datetime.utcnow.return_value.isoformat.return_value = self.date
             mock_datetime.strptime.side_effect = mocked_strptime_isoformat
             response = await self.asgi_client.get("/{}".format(state))
@@ -66,7 +68,7 @@ class FlaskRoutesTest(unittest.TestCase):
         state = "recovered"
         expected_json_output = self.read_file_v1(state=state)
 
-        with mock.patch("app.services.location.jhu.datetime") as mock_datetime:
+        with mock.patch("app.services.location.local.datetime") as mock_datetime:
             mock_datetime.utcnow.return_value.isoformat.return_value = self.date
             mock_datetime.strptime.side_effect = mocked_strptime_isoformat
             response = await self.asgi_client.get("/{}".format(state))
@@ -78,7 +80,7 @@ class FlaskRoutesTest(unittest.TestCase):
         state = "all"
         expected_json_output = self.read_file_v1(state=state)
 
-        with mock.patch("app.services.location.jhu.datetime") as mock_datetime:
+        with mock.patch("app.services.location.local.datetime") as mock_datetime:
             mock_datetime.utcnow.return_value.isoformat.return_value = self.date
             mock_datetime.strptime.side_effect = mocked_strptime_isoformat
             response = await self.asgi_client.get("/{}".format(state))
@@ -89,19 +91,19 @@ class FlaskRoutesTest(unittest.TestCase):
     async def test_v2_latest(self):
         state = "latest"
 
-        with mock.patch("app.services.location.jhu.datetime") as mock_datetime:
+        with mock.patch("app.services.location.local.datetime") as mock_datetime:
             mock_datetime.utcnow.return_value.isoformat.return_value = DATETIME_STRING
             mock_datetime.strptime.side_effect = mocked_strptime_isoformat
             response = await self.asgi_client.get(f"/v2/{state}")
 
         return_data = response.json()
-        check_dict = {"latest": {"confirmed": 1940, "deaths": 1940, "recovered": 0}}
+        check_dict = {"latest":{"confirmed":51001,"deaths":2959,"recovered":0}}
         assert return_data == check_dict
 
     async def test_v2_locations(self):
         state = "locations"
 
-        with mock.patch("app.services.location.jhu.datetime") as mock_datetime:
+        with mock.patch("app.services.location.local.datetime") as mock_datetime:
             mock_datetime.utcnow.return_value.isoformat.return_value = DATETIME_STRING
             mock_datetime.strptime.side_effect = mocked_strptime_isoformat
             response = await self.asgi_client.get("/v2/{}".format(state))
@@ -119,7 +121,7 @@ class FlaskRoutesTest(unittest.TestCase):
         state = "locations"
         test_id = 1
 
-        with mock.patch("app.services.location.jhu.datetime") as mock_datetime:
+        with mock.patch("app.services.location.local.datetime") as mock_datetime:
             mock_datetime.utcnow.return_value.isoformat.return_value = DATETIME_STRING
             mock_datetime.strptime.side_effect = mocked_strptime_isoformat
             response = await self.asgi_client.get("/v2/{}/{}".format(state, test_id))
@@ -138,14 +140,12 @@ class FlaskRoutesTest(unittest.TestCase):
 @pytest.mark.parametrize(
     "query_params,expected_status",
     [
-        ({"source": "csbs"}, 200),
-        ({"source": "jhu"}, 200),
+        ({"source": "local"}, 200),
         ({"timelines": True}, 200),
         ({"timelines": "true"}, 200),
         ({"timelines": 1}, 200),
-        ({"source": "jhu", "timelines": True}, 200),
-        ({"source": "csbs", "country_code": "US"}, 200),
-        ({"source": "jhu", "country_code": "US"}, 404),
+        ({"source": "local", "timelines": True}, 200),
+        ({"source": "local", "country_code": "US"}, 404),
     ],
 )
 async def test_locations_status_code(async_api_client, query_params, expected_status, mock_client_session):
@@ -160,12 +160,11 @@ async def test_locations_status_code(async_api_client, query_params, expected_st
 @pytest.mark.parametrize(
     "query_params",
     [
-        {"source": "csbs"},
-        {"source": "jhu"},
+        {"source": "local"},
         {"timelines": True},
         {"timelines": "true"},
         {"timelines": 1},
-        {"source": "jhu", "timelines": True},
+        {"source": "local", "timelines": True},
     ],
 )
 async def test_latest(async_api_client, query_params, mock_client_session):

@@ -11,7 +11,7 @@ from . import V2
 @V2.get("/locations", response_model=Locations, response_model_exclude_unset=True)
 async def get_locations(
     request: Request,
-    source: Sources = "jhu",
+    source: Sources = "local",
     country_code: str = None,
     province: str = None,
     county: str = None,
@@ -57,7 +57,7 @@ async def get_locations(
 
 # pylint: disable=invalid-name
 @V2.get("/locations/{id}", response_model=Location)
-async def get_location_by_id(request: Request, id: int, source: Sources = "jhu", timelines: bool = True):
+async def get_location_by_id(request: Request, id: int, source: Sources = "local", timelines: bool = True):
     """
     Getting specific location by id.
     """

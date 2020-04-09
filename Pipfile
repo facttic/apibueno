@@ -30,6 +30,7 @@ python-dateutil = "*"
 python-dotenv = "*"
 requests = "*"
 uvicorn = "*"
+apscheduler = "==3.6.3"
 
 [requires]
 python_version = "3.8"
