@@ -33,9 +33,9 @@ class LocalLocationService(LocationService):
 # ---------------------------------------------------------------
 
 
-# Base URL for fetching category.
-BASE_URL = (
-    "https://raw.githubusercontent.com/facttic/apibueno/9-consume-local-data/app/data/"
+# Base DIR for fetching category.
+BASE_DIR = (
+    "app/data/"
 )
 
 
@@ -51,15 +51,13 @@ async def get_category(category):
     # Adhere to category naming standard.
     category = category.lower()
 
-    # URL to request data from.
-    url = BASE_URL + "time_series_%s.csv" % category
+    # DIR to get data from.
+    dir = BASE_DIR + "time_series_%s.csv" % category
 
-    # Request the data
-    async with httputils.CLIENT_SESSION.get(url) as response:
-        text = await response.text()
-
-    # Parse the CSV.
-    data = list(csv.DictReader(text.splitlines()))
+    # Open the file
+    with open(dir, mode='r') as csv_file:
+        # Parse the CSV.
+        data = list(csv.DictReader(csv_file))
 
     # The normalized locations.
     locations = []
