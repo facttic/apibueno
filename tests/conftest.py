@@ -45,7 +45,7 @@ async def async_api_client():
 
 class DateTimeStrpTime:
     """Returns instance of `DateTimeStrpTime`
-    when calling `app.services.location.jhu.datetime.trptime(date, '%m/%d/%y').isoformat()`.
+    when calling `app.services.location.local.datetime.trptime(date, '%m/%d/%y').isoformat()`.
     """
 
     def __init__(self, date, strformat):

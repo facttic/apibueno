@@ -1,4 +1,4 @@
-"""app.services.location.jhu.py"""
+"""app.services.location.local.py"""
 import csv
 from datetime import datetime
 
@@ -35,7 +35,7 @@ class LocalLocationService(LocationService):
 
 # Base URL for fetching category.
 BASE_URL = (
-    "https://raw.githubusercontent.com/facttic/apibueno/9-consume-local-data/data/"
+    "https://raw.githubusercontent.com/facttic/apibueno/9-consume-local-data/app/data/"
 )
 
 
