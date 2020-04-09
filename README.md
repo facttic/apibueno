@@ -44,3 +44,6 @@ Esta información puede cambiar durante el transcurso del hackaton
 #### Fuentes de datos
 - [Wikipedia Coronavirus Argentina](https://es.wikipedia.org/wiki/Pandemia_de_enfermedad_por_coronavirus_de_2020_en_Argentina)
 
+## License
+
+See [LICENSE.md](LICENSE.md) for the license
