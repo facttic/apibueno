@@ -45,8 +45,4 @@ for line in documento.splitlines():
                 dato.confirmados = parte
             if dato.nombre and dato.confirmados and parte.isnumeric():
                 dato.acumulados = parte
-        print (dato)
-
-
-# soloProvincias=(re.findall('-.*', documento, re.MULTILINE))
-# print(soloProvincias)
+        print(dato)
