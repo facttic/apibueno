@@ -4,6 +4,8 @@
 
 Basada en [Coronavirus Tracker API](https://github.com/ExpDev07/coronavirus-tracker-api)
 
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
+
 ## Descripción: API sobre coronavirus en Argentina
 
 ## Objetivos
