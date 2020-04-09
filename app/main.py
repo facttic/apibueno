@@ -21,12 +21,12 @@ from .utils.httputils import setup_client_session, teardown_client_session
 LOGGER = logging.getLogger("api")
 
 APP = FastAPI(
-    title="Coronavirus Tracker",
+    title="Argentina Covid19 API",
     description=(
-        "API for tracking the global coronavirus (COVID-19, SARS-CoV-2) outbreak."
-        " Project page: https://github.com/ExpDev07/coronavirus-tracker-api."
+        "API para el seguimiento del coronavirus en Argentina."
+        " Project page: https://github.com/facttic/apibueno"
     ),
-    version="2.0.1",
+    version="0.0.1",
     docs_url="/",
     redoc_url="/docs",
     on_startup=[setup_client_session],
@@ -53,7 +53,7 @@ async def add_datasource(request: Request, call_next):
 
     # Abort with 404 if source cannot be found.
     if not source:
-        return Response("The provided data-source was not found.", status_code=404)
+        return Response("La fuente de datos no se encontro.", status_code=404)
 
     # Attach source to request.
     request.state.source = source
