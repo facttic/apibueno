@@ -1,16 +1,8 @@
-from apscheduler.schedulers.blocking import BlockingScheduler
 
-scheduler = BlockingScheduler()
-URL = 'https://es.wikipedia.org/wiki/Pandemia_de_enfermedad_por_coronavirus_de_2020_en_Argentina'
-INTERVAL_MINUTES = 1
+class Scraping:
+    def __init__(self):
+        self.URL = 'https://es.wikipedia.org/wiki/Pandemia_de_enfermedad_por_coronavirus_de_2020_en_Argentina'
+        print(f'scraping data from {self.URL}........')
 
-
-@scheduler.scheduled_job('interval', minutes=INTERVAL_MINUTES)
-def scrap():
-    print('This job is run every 1 minutes.')
-    print(f'scraping data from ${URL}........')
-
-
-print('Scheduler has started.........')
-scheduler.start()
-print('Scheduler has finished.........')
+if __name__ == "__main__":
+    Scraping()
