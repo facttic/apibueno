@@ -2,7 +2,7 @@
 from ..coordinates import Coordinates
 from ..utils import countries
 from ..utils.populations import country_population
-
+from ..utils.populations_provinces import province_population
 
 # pylint: disable=redefined-builtin,invalid-name
 class Location:  # pylint: disable=too-many-instance-attributes
@@ -47,6 +47,16 @@ class Location:  # pylint: disable=too-many-instance-attributes
         """
         return country_population(self.country_code)
 
+    @property
+    def province_population(self):
+        """
+        Gets the population of this location.
+
+        :returns: The population.
+        :rtype: int
+        """
+        return province_population(self.province)
+
     def serialize(self):
         """
         Serializes the location into a dict.
@@ -61,6 +71,7 @@ class Location:  # pylint: disable=too-many-instance-attributes
             "country_code": self.country_code,
             "country_population": self.country_population,
             "province": self.province,
+            "province_population": self.province_population,
             # Coordinates.
             "coordinates": self.coordinates.serialize(),
             # Last updated.
