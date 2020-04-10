@@ -2,7 +2,7 @@
 import logging
 
 import requests
-from bs4 import BeautifulSoup
+from wikipedia_table import parse_table
 
 LOGGER = logging.getLogger(__name__)
 
@@ -21,20 +21,12 @@ def fetch_populations():
     mappings = {}
 
     # Fetch the province populations
-    web = requests.get("https://es.wikipedia.org/wiki/Demografía_de_Argentina").text
-    soup = BeautifulSoup(web, "html.parser")
+    #web = requests.get("https://es.wikipedia.org/wiki/Demografía_de_Argentina").text
+    web = requests.get("https://es.wikipedia.org/wiki/Pandemia_de_enfermedad_por_coronavirus_de_2020_en_Argentina").text
 
-    data = []
-    table = soup.find('table', attrs={'class':'wikitable'})
-    table_body = table.find('tbody')
-    rows = table_body.find_all('tr')
-    for row in rows:
-        cols = row.find_all('td')
-        cols = [ele.text.strip() for ele in cols]
-        data = [ele for ele in cols if ele]
-        if data:
-            data[1] = data[1].replace('.','')
-            mappings.update({data[0]: int(data[1]) or None})
+    data = parse_table(web)
+    for r in data:
+        mappings.update({r[0]: int(r[2])})
 
     # Finally, return the mappings.
     return mappings
