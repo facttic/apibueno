@@ -1,49 +1,101 @@
-# API - Bueno
+# Argentina Covid19 API
 
-> Este proyecto está organizado en el marco de [Hacktic](https://hackdash.org/projects/5e8b6b87875b954b4a1d13fa) una Hackaton dónde participan múltiples cooperativas de [Facttic](https://facttic.org.ar/).
-
-Basada en [Coronavirus Tracker API](https://github.com/ExpDev07/coronavirus-tracker-api)
+> Este proyecto fue hecho en el marco de [Hacktic](https://hackdash.org/projects/5e8b6b87875b954b4a1d13fa), una Hackaton dónde participan múltiples cooperativas de [Facttic](https://facttic.org.ar/) y esta basado en [Coronavirus Tracker API](https://github.com/ExpDev07/coronavirus-tracker-api)
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
+[![License](https://img.shields.io/github/license/facttic/apibueno)](LICENSE.md)
 
-## Descripción: API sobre coronavirus en Argentina
 
 ## Objetivos
 
-- Disponibilizar esta informacion para que sea consultable por aplicaciones. Hoy en dia existen varias de estas APIs pero no contienen informacion a nivel regional (solo discriminan a Argentina a nivel pais)
+- Disponibilizar esta informacion para que sea consultable por aplicaciones. Hoy en dia existen varias de estas APIs a nivel internacional pero no contienen informacion a nivel local (solo discriminan a Argentina a nivel pais).
 - Tiene que estar documentada con alguna herramienta tipo swagger para que sea consultable y "descubrible"
 
-## Funcionalidades
+## Fuentes de Datos
 
-### ETL automatizado
+Evaluamos varias fuentes de datos:
+- https://www.argentina.gob.ar/coronavirus/informe-diario
+- https://github.com/SistemasMapache/Covid19arData
+- https://es.wikipedia.org/wiki/Pandemia_de_enfermedad_por_coronavirus_de_2020_en_Argentina
 
-- [ETL](https://es.wikipedia.org/wiki/Extract,_transform_and_load)
+En principio vamos estar usando la web de [Wikipedia Coronavirus Argentina](https://es.wikipedia.org/wiki/Pandemia_de_enfermedad_por_coronavirus_de_2020_en_Argentina) mientras encontramos la mejor manera de parsear los pdf a partir de los que informa el Ministerio de Salud.
 
-### API por Provincias
+## API
 
-Esta información puede cambiar durante el transcurso del hackaton
+Esta hecha en python con [FastApi](https://fastapi.tiangolo.com/)
 
-### Documentación con Swagger
+Todos los endpoints estan documentados en [apibueno.herokuapp.com/](https://apibueno.herokuapp.com) y son accesible vía https.
 
-#### Datos
-- Casos
-- Población Actual
-- Prevalencia
-- Muertes
-- Recuperaciones
+Podes usar el browser o por ejemplo hacer uso de curl en tu terminal:
 
-#### Filtros
-- Casos
-- Muertes
-- Recuperaciones
-- Fecha
+`curl https://apibueno.herokuapp.com/v2/locations`
 
-#### Limite
-- 120 pedidos por minuto
+### Swagger/OpenAPI
 
-#### Fuentes de datos
-- [Wikipedia Coronavirus Argentina](https://es.wikipedia.org/wiki/Pandemia_de_enfermedad_por_coronavirus_de_2020_en_Argentina)
+La definción json de [OpenAPI](https://swagger.io/docs/specification/about/) la podes bajar de [https://apibueno.herokuapp.com/openapi.json](https://apibueno.herokuapp.com/openapi.json)
 
-## License
 
-See [LICENSE.md](LICENSE.md) for the license
+## Instalación
+
+* `git clone https://github.com/facttic/apibueno.git`
+* `cd apibueno`
+
+1. Tenes que tener [`python3.8` instalado en el `PATH`](https://docs.python-guide.org/starting/installation/).
+2. [Instala `pipenv` como manejador de dependencias](https://pipenv.readthedocs.io/en/latest/install/#installing-pipenv)
+3. Crea un ambiente virtual y instalar todas las dependencies `$ pipenv sync --dev`
+4. Entrar al ambiente virtual `$ pipenv shell`
+
+## Levantar entorno de Desarrollo
+
+* `pipenv run dev`
+* Ir a la aplicación en [http://localhost:8000](http://localhost:8000).
+
+### Correr Tests
+> [pytest](https://docs.pytest.org/en/latest/)
+
+```bash
+pipenv run test
+```
+
+
+### Linting
+> [pylint](https://www.pylint.org/)
+
+```bash
+pipenv run lint
+```
+
+### Formateo
+> [black](https://black.readthedocs.io/en/stable/)
+
+```bash
+pipenv run fmt
+```
+
+### Schedule
+> Schedule scraping cada 24 horas
+
+```bash
+pipenv run schedule
+```
+
+### Scraping
+> Scrapea wikipedia y agregar al CSV
+
+```bash
+pipenv run scraping
+```
+
+### Actualiza los archivos requirement
+
+```bash
+invoke generate-reqs
+```
+
+[Pipfile.lock](./Pipfile.lock) se actualiza automaticamente cuando haces `pipenv install`.
+
+
+
+## Licencia
+
+Ver [LICENSE.md](LICENSE.md) para la licencia
