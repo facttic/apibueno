@@ -2,7 +2,7 @@
 import logging
 
 import requests
-from wikipedia_table import parse_table
+from .wikipedia_table import parse_table
 
 LOGGER = logging.getLogger(__name__)
 
