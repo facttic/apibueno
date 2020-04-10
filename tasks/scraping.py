@@ -1,5 +1,3 @@
-import re
-import html
 import requests
 import os
 import sys
@@ -12,6 +10,7 @@ from wikipedia_table import parse_table
 CONFIRMED_I = 1
 DEATHS_I = 4
 RECOVERED_I = 5
+
 
 class Scraping:
     def __init__(self):
@@ -28,40 +27,50 @@ class Scraping:
         confirmed_read = self.load_csv(self.confirmed_file)
         deaths_read = self.load_csv(self.deaths_file)
         recovered_read = self.load_csv(self.recovered_file)
-        epidemiologia_by_province = self.to_dict(0, self.epidemiologia_table)
-        # We don't do a backfill because wikipedia doesn't have the info per day
-        # Only the most recent totals per province
-        # if self.to_date(last_day_csv) < self.to_date(last_day_table):
-        # open writer on append mode for all the time series
-        # slice table array from last day csv
-        # Provincia, Pais, Lat, Long, ...dias
+
+        last_day_csv = confirmed_read[0][-1]
+        today = datetime.strptime(datetime.now().strftime('%-m/%-d/%y'), '%m/%d/%y')
+        replace_last = self.to_date(last_day_csv) == today
+
         with open(self.confirmed_file, "w") as c, \
             open(self.deaths_file, "w") as d, \
             open(self.recovered_file, "w") as r:
 
-            confirmed = csv.writer(c)
-            deaths = csv.writer(d)
-            recovered = csv.writer(r)
+            writers = [csv.writer(c), csv.writer(d), csv.writer(r)]
+
             for i, row in enumerate(confirmed_read):
                 if i == 0:
-                    row.append(datetime.now().strftime('%m/%d/%y'))
-                    confirmed.writerow(row)
-                    deaths.writerow(row)
-                    recovered.writerow(row)
+                    self.update_headers(row, writers, replace_last)
                 else:
+                    province = row[0]
                     confirmed_row = row
                     deaths_row = deaths_read[i]
                     recovered_row = recovered_read[i]
-                    province = row[0]
-                    # confirmed
-                    confirmed_row.append(epidemiologia_by_province[province][CONFIRMED_I])
-                    confirmed.writerow(confirmed_row)
-                    # deaths
-                    deaths_row.append(epidemiologia_by_province[province][DEATHS_I])
-                    deaths.writerow(deaths_row)
-                    # recovered
-                    recovered_row.append(epidemiologia_by_province[province][RECOVERED_I])
-                    recovered.writerow(recovered_row)
+                    new_rows = [confirmed_row, deaths_row, recovered_row]
+
+                    self.write_to_csvs(province, writers, new_rows, replace_last)
+
+    def write_to_csvs(self, province, writers, rows, replace_last=False):
+        [confirmed, deaths, recovered] = writers
+        [confirmed_row, deaths_row, recovered_row] = rows
+        indices = [CONFIRMED_I, DEATHS_I, RECOVERED_I]
+        epidemiologia_by_province = self.to_dict(0, self.epidemiologia_table)
+
+        for i, writer in enumerate(writers):
+            row = rows[i]
+            col_index = indices[i]
+            new_val = epidemiologia_by_province[province][col_index]
+            if replace_last:
+                row[-1] = new_val
+            else:
+                row.append(new_val)
+            writer.writerow(row)
+
+    def update_headers(self, header, writers, replace_last=False):
+        if not replace_last:
+            header.append(datetime.now().strftime('%-m/%-d/%y'))
+        for writer in writers:
+            writer.writerow(header)
 
     def load_csv(self, file_path):
         rows = []
