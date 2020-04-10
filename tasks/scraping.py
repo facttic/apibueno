@@ -24,10 +24,6 @@ class Scraping:
         self.process()
 
     def mergeCsv(self):
-        print(self.epidemiologia_table)
-        print("====socotroco====")
-        # print(self.estadisticas_table)
-
         # load csvs into memory
         confirmed_read = self.load_csv(self.confirmed_file)
         deaths_read = self.load_csv(self.deaths_file)
