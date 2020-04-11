@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class Latest(BaseModel):
+class Ultimos(BaseModel):
     """
     Latest model.
     """
@@ -11,9 +11,9 @@ class Latest(BaseModel):
     recuperados: int
 
 
-class LatestResponse(BaseModel):
+class RespuestaDeUltimos(BaseModel):
     """
     Response for latest.
     """
 
-    ultimos: Latest
+    ultimos: Ultimos

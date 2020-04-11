@@ -2,12 +2,12 @@
 from fastapi import Request
 
 from ...enums.sources import Sources
-from ...models.latest import LatestResponse as Latest
+from ...models.latest import RespuestaDeUltimos as Ultimos
 from . import V2
 
 
-@V2.get("/ultimos", response_model=Latest)
-async def get_latest(request: Request, fuente: Sources = "local"):  # pylint: disable=unused-argument
+@V2.get("/ultimos", response_model=Ultimos)
+async def ultimos(request: Request, fuente: Sources = "local"):  # pylint: disable=unused-argument
     """
     Ir a buscar los últimos totales de casos confirmados, muertes y recuperados.
     """

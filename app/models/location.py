@@ -2,13 +2,16 @@ from typing import Dict, List
 
 from pydantic import BaseModel
 
-from .latest import Latest
-from .timeline import Timelines
+from .latest import Ultimos
+from .timeline import Historiales
 
+class Coordenadas(BaseModel):
+    latitude: str
+    longitude: str
 
-class Location(BaseModel):
+class Lugar(BaseModel):
     """
-    Location model.
+    Ubicacion.
     """
 
     id: int
@@ -19,23 +22,41 @@ class Location(BaseModel):
     poblacion_provincia: int = None
     municipio: str = ""
     ultima_actualizacion: str  # TODO use datetime.datetime type.
-    coordenadas: Dict
-    ultimos: Latest
-    timelines: Timelines = {}
+    coordenadas: Coordenadas
+    ultimos: Ultimos
+    timelines: Historiales = {}
+
+class LugarParaCategoria(BaseModel):
+    """
+    Datos de Ubicacion para una categoria en particular.
+    """
+
+    pais: str
+    codigo_pais: str
+    provincia: str = ""
+    coordenadas: Coordenadas
+    historico: Dict
+    ultimos: int
+
+class LugaresPorCategoria(BaseModel):
+    """
+    Datos de Ubicaciones para una categoria en particular.
+    """
+    lugares: List[LugarParaCategoria]
 
 
-class LocationResponse(BaseModel):
+class RespuestaDeLugar(BaseModel):
     """
     Response for location.
     """
 
-    lugar: Location
+    lugar: Lugar
 
 
-class LocationsResponse(BaseModel):
+class RespuestaDeLugares(BaseModel):
     """
     Response for locations.
     """
 
-    ultimos: Latest
-    lugares: List[Location] = []
+    ultimos: Ultimos
+    lugares: List[Lugar] = []

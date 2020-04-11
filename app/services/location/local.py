@@ -82,7 +82,7 @@ async def get_category(category):
                 "codigo_pais": countries.country_code(country),
                 "provincia": item["Province/State"],
                 # Coordinates.
-                "coordenadas": {"lat": item["Lat"], "long": item["Long"],},
+                "coordenadas": {"latitude": item["Lat"], "longitude": item["Long"]},
                 # History.
                 "historico": history,
                 # Latest statistic.
@@ -142,7 +142,7 @@ async def get_locations():
                 location["pais"],
                 location["provincia"],
                 # Coordinates.
-                Coordinates(coordinates["lat"], coordinates["long"]),
+                Coordinates(coordinates["latitude"], coordinates["longitude"]),
                 # Last update.
                 datetime.utcnow().isoformat() + "Z",
                 # Timelines (parse dates as ISO).

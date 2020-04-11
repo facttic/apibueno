@@ -2,14 +2,14 @@
 from fastapi import HTTPException, Request
 
 from ...enums.sources import Sources
-from ...models.location import LocationResponse as Location
-from ...models.location import LocationsResponse as Locations
+from ...models.location import RespuestaDeLugar as Lugar
+from ...models.location import RespuestaDeLugares as Lugares
 from . import V2
 
 
 # pylint: disable=unused-argument,too-many-arguments,redefined-builtin
-@V2.get("/lugares", response_model=Locations, response_model_exclude_unset=True)
-async def get_locations(
+@V2.get("/lugares", response_model=Lugares, response_model_exclude_unset=True)
+async def lugares(
     request: Request,
     fuente: Sources = "local",
     codigo_pais: str = None,
@@ -42,7 +42,7 @@ async def get_locations(
         except AttributeError:
             pass
         if not locations:
-            raise HTTPException(404, detail=f"Source `{fuente}` does not have the desired location data.")
+            raise HTTPException(404, detail=f"La fuente `{fuente}` no tiene informacion de ese lugar.")
 
     # Return final serialized data.
     return {
@@ -56,8 +56,8 @@ async def get_locations(
 
 
 # pylint: disable=invalid-name
-@V2.get("/lugares/{id}", response_model=Location)
-async def get_location_by_id(request: Request, id: int, fuente: Sources = "local", timelines: bool = True):
+@V2.get("/lugares/{id}", response_model=Lugar)
+async def lugar_por_id(request: Request, id: int, fuente: Sources = "local", timelines: bool = True):
     """
     Ir a buscar un lugar por Id.
     """
