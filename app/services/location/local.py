@@ -113,11 +113,11 @@ async def get_locations():
     # Get all of the data categories locations.
     confirmed = await get_category("confirmed")
     deaths = await get_category("deaths")
-    # recovered = await get_category("recovered")
+    recovered = await get_category("recovered")
 
     locations_confirmed = confirmed["lugares"]
     locations_deaths = deaths["lugares"]
-    # locations_recovered = recovered["locations"]
+    locations_recovered = recovered["lugares"]
 
     # Final locations to return.
     locations = []
@@ -128,7 +128,7 @@ async def get_locations():
         timelines = {
             "confirmed": locations_confirmed[index]["historico"],
             "deaths": locations_deaths[index]["historico"],
-            # 'recovered' : locations_recovered[index]['history'],
+            "recovered" : locations_recovered[index]["historico"],
         }
 
         # Grab coordinates.
@@ -159,7 +159,12 @@ async def get_locations():
                             for date, amount in timelines["deaths"].items()
                         }
                     ),
-                    "recuperados": Timeline({}),
+                    "recuperados": Timeline(
+                        {
+                            datetime.strptime(date, "%m/%d/%y").isoformat() + "Z": amount
+                            for date, amount in timelines["recovered"].items()
+                        }
+                    ),
                 },
             )
         )
