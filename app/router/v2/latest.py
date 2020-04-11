@@ -6,16 +6,16 @@ from ...models.latest import LatestResponse as Latest
 from . import V2
 
 
-@V2.get("/latest", response_model=Latest)
-async def get_latest(request: Request, source: Sources = "local"):  # pylint: disable=unused-argument
+@V2.get("/ultimos", response_model=Latest)
+async def get_latest(request: Request, fuente: Sources = "local"):  # pylint: disable=unused-argument
     """
-    Getting latest amount of total confirmed cases, deaths, and recoveries.
+    Ir a buscar los últimos totales de casos confirmados, muertes y recuperados.
     """
     locations = await request.state.source.get_all()
     return {
-        "latest": {
-            "confirmed": sum(map(lambda location: location.confirmed, locations)),
-            "deaths": sum(map(lambda location: location.deaths, locations)),
-            "recovered": sum(map(lambda location: location.recovered, locations)),
+        "ultimos": {
+            "confirmados": sum(map(lambda location: location.confirmados, locations)),
+            "muertes": sum(map(lambda location: location.muertes, locations)),
+            "recuperados": sum(map(lambda location: location.recuperados, locations)),
         }
     }

@@ -12,15 +12,15 @@ class Location(BaseModel):
     """
 
     id: int
-    country: str
-    country_code: str
-    country_population: int = None
-    province: str = ""
-    province_population: int = None
-    county: str = ""
-    last_updated: str  # TODO use datetime.datetime type.
-    coordinates: Dict
-    latest: Latest
+    pais: str
+    codigo_pais: str
+    poblacion_pais: int = None
+    provincia: str = ""
+    poblacion_provincia: int = None
+    municipio: str = ""
+    ultima_actualizacion: str  # TODO use datetime.datetime type.
+    coordenadas: Dict
+    ultimos: Latest
     timelines: Timelines = {}
 
 
@@ -29,7 +29,7 @@ class LocationResponse(BaseModel):
     Response for location.
     """
 
-    location: Location
+    lugar: Location
 
 
 class LocationsResponse(BaseModel):
@@ -37,5 +37,5 @@ class LocationsResponse(BaseModel):
     Response for locations.
     """
 
-    latest: Latest
-    locations: List[Location] = []
+    ultimos: Latest
+    lugares: List[Location] = []

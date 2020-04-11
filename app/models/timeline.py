@@ -8,7 +8,7 @@ class Timeline(BaseModel):
     Timeline model.
     """
 
-    latest: int
+    ultimos: int
     timeline: Dict[str, int] = {}
 
 
@@ -17,6 +17,6 @@ class Timelines(BaseModel):
     Timelines model.
     """
 
-    confirmed: Timeline
-    deaths: Timeline
-    recovered: Timeline
+    confirmados: Timeline
+    muertes: Timeline
+    recuperados: Timeline

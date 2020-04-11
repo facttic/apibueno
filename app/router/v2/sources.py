@@ -3,9 +3,9 @@ from ...data import DATA_SOURCES
 from . import V2
 
 
-@V2.get("/sources")
+@V2.get("/fuentes")
 async def sources():
     """
-    Retrieves a list of data-sources that are availble to use.
+    Trae la lista de fuentes de datos disponibles para usar.
     """
-    return {"sources": list(DATA_SOURCES.keys())}
+    return {"fuentes": list(DATA_SOURCES.keys())}

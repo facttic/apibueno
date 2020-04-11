@@ -6,9 +6,9 @@ class Latest(BaseModel):
     Latest model.
     """
 
-    confirmed: int
-    deaths: int
-    recovered: int
+    confirmados: int
+    muertes: int
+    recuperados: int
 
 
 class LatestResponse(BaseModel):
@@ -16,4 +16,4 @@ class LatestResponse(BaseModel):
     Response for latest.
     """
 
-    latest: Latest
+    ultimos: Latest
