@@ -15,7 +15,7 @@ from . import LocationService
 
 class LocalLocationService(LocationService):
     """
-    Service for retrieving locations from local repository(https://github.com/facttic/apibueno).
+    Servicio para traer lugares desde el repositorio local repository(https://github.com/facttic/apibueno).
     """
 
     async def get_all(self):
@@ -41,9 +41,9 @@ BASE_DIR = (
 @cached(cache=TTLCache(maxsize=1024, ttl=3600))
 async def get_category(category):
     """
-    Retrieves the data for the provided category. The data is cached for 1 hour.
+    Trae los datos por medio de la categoria. Los datos se cachean por 1 hora.
 
-    :returns: The data for category.
+    :returns: Los datos de la categoria.
     :rtype: dict
     """
 
@@ -78,36 +78,36 @@ async def get_category(category):
         locations.append(
             {
                 # General info.
-                "country": country,
-                "country_code": countries.country_code(country),
-                "province": item["Province/State"],
+                "pais": country,
+                "codigo_pais": countries.country_code(country),
+                "provincia": item["Province/State"],
                 # Coordinates.
-                "coordinates": {"lat": item["Lat"], "long": item["Long"],},
+                "coordenadas": {"latitude": item["Lat"], "longitude": item["Long"]},
                 # History.
-                "history": history,
+                "historico": history,
                 # Latest statistic.
-                "latest": int(latest or 0),
+                "ultimos": int(latest or 0),
             }
         )
 
     # Latest total.
-    latest = sum(map(lambda location: location["latest"], locations))
+    latest = sum(map(lambda location: location["ultimos"], locations))
 
     # Return the final data.
     return {
-        "locations": locations,
-        "latest": latest,
-        "last_updated": datetime.utcnow().isoformat() + "Z",
-        "source": "https://github.com/facttic/apibueno",
+        "lugares": locations,
+        "ultimos": latest,
+        "ultimo_actualizacion": datetime.utcnow().isoformat() + "Z",
+        "fuente": "https://github.com/facttic/apibueno",
     }
 
 
 @cached(cache=TTLCache(maxsize=1024, ttl=3600))
 async def get_locations():
     """
-    Retrieves the locations from the categories. The locations are cached for 1 hour.
+    Trae los lugares de las categorias. Los lugares se cachean por 1 hora
 
-    :returns: The locations.
+    :returns: Los lugares.
     :rtype: List[Location]
     """
     # Get all of the data categories locations.
@@ -115,8 +115,8 @@ async def get_locations():
     deaths = await get_category("deaths")
     # recovered = await get_category("recovered")
 
-    locations_confirmed = confirmed["locations"]
-    locations_deaths = deaths["locations"]
+    locations_confirmed = confirmed["lugares"]
+    locations_deaths = deaths["lugares"]
     # locations_recovered = recovered["locations"]
 
     # Final locations to return.
@@ -126,40 +126,40 @@ async def get_locations():
     for index, location in enumerate(locations_confirmed):
         # Get the timelines.
         timelines = {
-            "confirmed": locations_confirmed[index]["history"],
-            "deaths": locations_deaths[index]["history"],
+            "confirmed": locations_confirmed[index]["historico"],
+            "deaths": locations_deaths[index]["historico"],
             # 'recovered' : locations_recovered[index]['history'],
         }
 
         # Grab coordinates.
-        coordinates = location["coordinates"]
+        coordinates = location["coordenadas"]
 
         # Create location (supporting timelines) and append.
         locations.append(
             TimelinedLocation(
                 # General info.
                 index,
-                location["country"],
-                location["province"],
+                location["pais"],
+                location["provincia"],
                 # Coordinates.
-                Coordinates(coordinates["lat"], coordinates["long"]),
+                Coordinates(coordinates["latitude"], coordinates["longitude"]),
                 # Last update.
                 datetime.utcnow().isoformat() + "Z",
                 # Timelines (parse dates as ISO).
                 {
-                    "confirmed": Timeline(
+                    "confirmados": Timeline(
                         {
                             datetime.strptime(date, "%m/%d/%y").isoformat() + "Z": amount
                             for date, amount in timelines["confirmed"].items()
                         }
                     ),
-                    "deaths": Timeline(
+                    "muertes": Timeline(
                         {
                             datetime.strptime(date, "%m/%d/%y").isoformat() + "Z": amount
                             for date, amount in timelines["deaths"].items()
                         }
                     ),
-                    "recovered": Timeline({}),
+                    "recuperados": Timeline({}),
                 },
             )
         )

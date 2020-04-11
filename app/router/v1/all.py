@@ -1,20 +1,21 @@
 """app.router.v1.all.py"""
 from ...services.location.local import get_category
+from ...models.all import Todos
 from . import V1
 
 
-@V1.get("/all")
-async def all():  # pylint: disable=redefined-builtin
-    """Get all the categories."""
+@V1.get("/todos", response_model=Todos)
+async def todos():  # pylint: disable=redefined-builtin
+    """Trae todas las categorias."""
     confirmed = await get_category("confirmed")
     deaths = await get_category("deaths")
     recovered = await get_category("recovered")
 
     return {
         # Data.
-        "confirmed": confirmed,
-        "deaths": deaths,
-        "recovered": recovered,
+        "confirmados": confirmed,
+        "muertes": deaths,
+        "recuperados": recovered,
         # Latest.
-        "latest": {"confirmed": confirmed["latest"], "deaths": deaths["latest"], "recovered": recovered["latest"],},
+        "ultimos": {"confirmados": confirmed["ultimos"], "muertes": deaths["ultimos"], "recuperados": recovered["ultimos"],},
     }
