@@ -24,13 +24,15 @@ En principio vamos estar usando la web de [Wikipedia Coronavirus Argentina](http
 
 Esta hecha en python con [FastApi](https://fastapi.tiangolo.com/)
 
-Todos los endpoints estan documentados en [apibueno.herokuapp.com/](https://apibueno.herokuapp.com) y son accesible vía https.
+Todos los endpoints estan documentados y son accesible vía https:
+
+- [Swagger UI ApiBueno](https://apibueno.herokuapp.com/)
+- [Redoc ApiBueno](https://apibueno.herokuapp.com/docs)
 
 Podes usar el browser o por ejemplo hacer uso de curl en tu terminal:
-
 `curl https://apibueno.herokuapp.com/v2/locations`
 
-### Swagger/OpenAPI
+### OpenAPI
 
 La definción json de [OpenAPI](https://swagger.io/docs/specification/about/) la podes bajar de [https://apibueno.herokuapp.com/openapi.json](https://apibueno.herokuapp.com/openapi.json)
 
