@@ -11,7 +11,12 @@
 - Disponibilizar esta informacion para que sea consultable por aplicaciones. Hoy en dia existen varias de estas APIs a nivel internacional pero no contienen informacion a nivel local (solo discriminan a Argentina a nivel pais).
 - Tiene que estar documentada con alguna herramienta tipo swagger para que sea consultable y "descubrible"
 
-## Fuentes de Datos
+## Datos iniciales y carga manual
+
+Los datos hasta el 12 de Abril fueron recopilados manualmente.
+El procedimiento y fuentes de informacion estan destallados en **[este](/fuentes-de-datos-y-procedimiento.md)** documento.
+
+## Actualizacion automatica
 
 Evaluamos varias fuentes de datos:
 - https://www.argentina.gob.ar/coronavirus/informe-diario
