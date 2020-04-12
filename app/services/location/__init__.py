@@ -4,15 +4,15 @@ from abc import ABC, abstractmethod
 
 class LocationService(ABC):
     """
-    Service for retrieving locations.
+    Servicio para ir a buscar los lugares.
     """
 
     @abstractmethod
     async def get_all(self):
         """
-        Gets and returns all of the locations.
+        Buscar y retorna todas los lugares.
 
-        :returns: The locations.
+        :returns: Los lugares.
         :rtype: List[Location]
         """
         raise NotImplementedError
@@ -20,9 +20,9 @@ class LocationService(ABC):
     @abstractmethod
     async def get(self, id):  # pylint: disable=redefined-builtin,invalid-name
         """
-        Gets and returns location with the provided id.
+        Busca y retorna el lugar por id.
 
-        :returns: The location.
+        :returns: El lugar.
         :rtype: Location
         """
         raise NotImplementedError

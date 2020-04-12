@@ -1,7 +1,7 @@
 """
-Corona Virus Tracker API
+Argentina Covid19 API
 ~~~~~~~~~~~~~~~~~~~~~~~~
-API for tracking the global coronavirus (COVID-19, SARS-CoV-2) outbreak.
+API para el seguimiento del coronavirus en Argentina
 """
 # See PEP396.
-__version__ = "2.0.1"
+__version__ = "0.0.1"

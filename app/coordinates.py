@@ -3,7 +3,7 @@
 
 class Coordinates:
     """
-    A position on earth using decimal coordinates (latitude and longitude).
+    Una posición en la tierra usando coordenadas decimales (latitud y longitud).
     """
 
     def __init__(self, latitude, longitude):
@@ -12,9 +12,9 @@ class Coordinates:
 
     def serialize(self):
         """
-        Serializes the coordinates into a dict.
+        Serializa las coordenadas en un dict.
 
-        :returns: The serialized coordinates.
+        :returns: Las coordenadas serializadas.
         :rtype: dict
         """
         return {"latitude": self.latitude, "longitude": self.longitude}

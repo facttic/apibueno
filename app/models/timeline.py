@@ -3,20 +3,20 @@ from typing import Dict
 from pydantic import BaseModel
 
 
-class Timeline(BaseModel):
+class Historial(BaseModel):
     """
-    Timeline model.
+    Historial de una categoria en particular.
     """
 
-    latest: int
+    ultimos: int
     timeline: Dict[str, int] = {}
 
 
-class Timelines(BaseModel):
+class Historiales(BaseModel):
     """
-    Timelines model.
+    Historial para cada categoria.
     """
 
-    confirmed: Timeline
-    deaths: Timeline
-    recovered: Timeline
+    confirmados: Historial
+    muertes: Historial
+    recuperados: Historial

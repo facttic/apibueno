@@ -1,19 +1,19 @@
 from pydantic import BaseModel
 
 
-class Latest(BaseModel):
+class Ultimos(BaseModel):
     """
     Latest model.
     """
 
-    confirmed: int
-    deaths: int
-    recovered: int
+    confirmados: int
+    muertes: int
+    recuperados: int
 
 
-class LatestResponse(BaseModel):
+class RespuestaDeUltimos(BaseModel):
     """
     Response for latest.
     """
 
-    latest: Latest
+    ultimos: Ultimos

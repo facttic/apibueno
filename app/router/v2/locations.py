@@ -2,29 +2,29 @@
 from fastapi import HTTPException, Request
 
 from ...enums.sources import Sources
-from ...models.location import LocationResponse as Location
-from ...models.location import LocationsResponse as Locations
+from ...models.location import RespuestaDeLugar as Lugar
+from ...models.location import RespuestaDeLugares as Lugares
 from . import V2
 
 
 # pylint: disable=unused-argument,too-many-arguments,redefined-builtin
-@V2.get("/locations", response_model=Locations, response_model_exclude_unset=True)
-async def get_locations(
+@V2.get("/lugares", response_model=Lugares, response_model_exclude_unset=True)
+async def lugares(
     request: Request,
-    source: Sources = "local",
-    country_code: str = None,
-    province: str = None,
-    county: str = None,
+    fuente: Sources = "local",
+    codigo_pais: str = None,
+    provincia: str = None,
+    municipio: str = None,
     timelines: bool = False,
 ):
     """
-    Getting the locations.
+    Ir a buscar casos de un lugar
     """
     # All query paramameters.
     params = dict(request.query_params)
 
     # Remove reserved params.
-    params.pop("source", None)
+    params.pop("fuente", None)
     params.pop("timelines", None)
 
     # Retrieve all the locations.
@@ -42,24 +42,24 @@ async def get_locations(
         except AttributeError:
             pass
         if not locations:
-            raise HTTPException(404, detail=f"Source `{source}` does not have the desired location data.")
+            raise HTTPException(404, detail=f"La fuente `{fuente}` no tiene informacion de ese lugar.")
 
     # Return final serialized data.
     return {
-        "latest": {
-            "confirmed": sum(map(lambda location: location.confirmed, locations)),
-            "deaths": sum(map(lambda location: location.deaths, locations)),
-            "recovered": sum(map(lambda location: location.recovered, locations)),
+        "ultimos": {
+            "confirmados": sum(map(lambda location: location.confirmados, locations)),
+            "muertes": sum(map(lambda location: location.muertes, locations)),
+            "recuperados": sum(map(lambda location: location.recuperados, locations)),
         },
-        "locations": [location.serialize(timelines) for location in locations],
+        "lugares": [location.serialize(timelines) for location in locations],
     }
 
 
 # pylint: disable=invalid-name
-@V2.get("/locations/{id}", response_model=Location)
-async def get_location_by_id(request: Request, id: int, source: Sources = "local", timelines: bool = True):
+@V2.get("/lugares/{id}", response_model=Lugar)
+async def lugar_por_id(request: Request, id: int, fuente: Sources = "local", timelines: bool = True):
     """
-    Getting specific location by id.
+    Ir a buscar un lugar por Id.
     """
     location = await request.state.source.get(id)
-    return {"location": location.serialize(timelines)}
+    return {"lugar": location.serialize(timelines)}

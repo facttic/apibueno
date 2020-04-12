@@ -31,6 +31,7 @@ python-dotenv = "*"
 requests = "*"
 uvicorn = "*"
 apscheduler = "==3.6.3"
+beautifulsoup4 = "==4.9.0"
 
 [requires]
 python_version = "3.8"
@@ -42,3 +43,5 @@ fmt = "invoke fmt"
 sort = "invoke sort"
 lint = "invoke lint"
 test = "invoke test"
+schedule = "invoke schedule"
+scraping = "invoke scraping"

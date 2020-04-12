@@ -4,7 +4,7 @@ from collections import OrderedDict
 
 class Timeline:
     """
-    Timeline with history of data.
+    Timeline con los datos históricos.
     """
 
     def __init__(self, history=None):
@@ -13,14 +13,14 @@ class Timeline:
     @property
     def timeline(self):
         """
-        Gets the history sorted by date (key).
+        Trae el histórico ordenado por fecha (key).
         """
         return OrderedDict(sorted(self.__timeline.items()))
 
     @property
     def latest(self):
         """
-        Gets the latest available history value.
+        Trae el último valor disponible del histórico.
         """
         # Get values in a list.
         values = list(self.timeline.values())
@@ -34,9 +34,9 @@ class Timeline:
 
     def serialize(self):
         """
-        Serializes the timeline into a dict.
+        Serializa el timeline en un dict.
 
-        :returns: The serialized timeline.
+        :returns: El timeline serializado.
         :rtype: dict
         """
-        return {"latest": self.latest, "timeline": self.timeline}
+        return {"ultimos": self.latest, "timeline": self.timeline}

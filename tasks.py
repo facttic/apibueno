@@ -71,3 +71,13 @@ def generate_reqs(ctx):
     """Generate requirements.txt"""
     reqs = ["pipenv lock -r > requirements.txt", "pipenv lock -r --dev > requirements-dev.txt"]
     [ctx.run(req) for req in reqs]
+
+@invoke.task
+def schedule(ctx):
+    """Schedule"""
+    ctx.run(" ".join(["python", "tasks/schedule.py"]))
+
+@invoke.task
+def scraping(ctx):
+    """Scraping."""
+    ctx.run(" ".join(["python", "tasks/scraping.py"]))
