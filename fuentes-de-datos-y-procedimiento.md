@@ -49,7 +49,7 @@
 | fuente | Velocidad de actualizacion|
 |----- | ----- |
 |[sitio Gob Chaco](http://comunicacion.chaco.gov.ar/lista-noticias/328)| N/A|
-|[twitter Gob Catamarca](https://twitter.com/ChacoDeTodos) |  N/A|
+|[twitter Gob Chaco](https://twitter.com/ChacoDeTodos) |  N/A|
 
 **Chubut**
 
