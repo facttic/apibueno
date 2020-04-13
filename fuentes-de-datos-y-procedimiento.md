@@ -177,7 +177,9 @@
 
 **Santiago del Estero**
 
-_Sin Informacion_
+|fuente|Velocidad de actualizacion|
+|------|--------------------------|
+[sitio oficial](http://www.msaludsgo.gov.ar/web2/?cargar=articulo&id=1879) | 24hs |
 
 
 **Tierra del Fuego**
