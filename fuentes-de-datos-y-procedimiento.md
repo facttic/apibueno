@@ -3,6 +3,7 @@
 ## Procedimiento de Carga
 
 **TLDR**
+
 Cada coope va a cargar la cantidad de recuperados nuevos de **ese dia** (no los totales, esta la planilla con los dias anteriores si hace falta hacer la resta), tomados de los sitios de noticias de cada provincia. No hace falta que releven los fallecidos ni los casos nuevos, pues esto ya figura en el reporte diario del Min Salud
 
 ### Casos nuevos
