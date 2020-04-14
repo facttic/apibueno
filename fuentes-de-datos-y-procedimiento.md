@@ -85,7 +85,7 @@ Cada coope va a cargar la cantidad de recuperados nuevos de **ese dia** (no los 
 
 | fuente | Velocidad de actualizacion|
 |----- | ----- |
-|[sitio oficial](https://www.formosa.gob.ar/actualidadprovincial)| N/A|
+|[sitio oficial](https://www.formosa.gob.ar/coronavirus)| N/A|
 |[twitter oficial](https://twitter.com/GobiernoFormosa) |  N/A|
 
 **Jujuy**
