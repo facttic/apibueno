@@ -92,8 +92,8 @@ Cada coope va a cargar la cantidad de recuperados nuevos de **ese dia** (no los 
 
 | fuente | Velocidad de actualizacion|
 |----- | ----- |
-|[sitio oficial](https://www.jujuyalmomento.com/)| N/A|
-|[noticias locales](http://prensa.jujuy.gob.ar/) |  N/A|
+|[sitio oficial](http://prensa.jujuy.gob.ar/)| N/A|
+|[noticias locales](https://www.jujuyalmomento.com/) |  N/A|
 
 **La Pampa**
 
