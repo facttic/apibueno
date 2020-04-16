@@ -94,7 +94,7 @@ pipenv run scraping
 ```
 
 ### Scraping
-> Crea un nuevo archivo y con los 3 csv juntos (para simplificar importarlo para un motor de DB)
+> Crea un nuevo archivo y con los 3 csv juntos (para simplificar importarlo para un motor de DB). El resultado se guarda en app/data/time_series_export.csv *pipenv install --dev (requererido)
 
 ```bash
 pipenv run export
