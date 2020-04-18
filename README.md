@@ -8,8 +8,8 @@
 
 ## Objetivos
 
-- Disponibilizar esta informacion para que sea consultable por aplicaciones. Hoy en dia existen varias de estas APIs a nivel internacional pero no contienen informacion a nivel local (solo discriminan a Argentina a nivel pais).
-- Tiene que estar documentada con alguna herramienta tipo swagger para que sea consultable y "descubrible"
+ - Disponibilizar datos del COVID-19 de cada provincia de Argentina, para que sea consumible por aplicaciones y cualquier persona que quiera usar los datos los pueda consultar, sabiendo que provienen solo de comunicaciones oficiales y que se actualizan todos los días. Hoy en dia existen varias de estas APIs a nivel internacional pero no contienen informacion a nivel local (solo discriminan a Argentina a nivel pais).
+ - Tiene que estar documentada con Swagger para que sea consultable y "descubrible"
 
 ## Datos iniciales y carga manual
 
