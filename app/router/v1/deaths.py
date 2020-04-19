@@ -5,8 +5,10 @@ from . import V1
 
 
 @V1.get("/muertes", response_model=LugaresPorCategoria)
-async def muertes():
-    """Total de muertes."""
-    deaths_data = await get_category("deaths")
+async def muertes(totales: bool = False):
+    """**Muertes por dia**<br />
+        - Por default trae los fallecidos nuevos por dia.<br />
+        - Si se pasa `totales=true` trae las muertes acumuladas dia por dia"""
+    deaths_data = await get_category("deaths", totales)
 
     return deaths_data
