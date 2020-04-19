@@ -182,7 +182,7 @@ Cada coope va a cargar la cantidad de recuperados nuevos de **ese dia** (no los 
 
 |fuente|Velocidad de actualizacion|
 |------|--------------------------|
-[sitio oficial](http://www.msaludsgo.gov.ar/web2/?cargar=articulo&id=1879) | 24hs |
+[sitio oficial](http://www.msaludsgo.gov.ar/web2/?cargar=articulo&id=1857) | 24hs |
 
 
 **Tierra del Fuego**

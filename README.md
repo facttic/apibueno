@@ -13,9 +13,10 @@
 
 ## Datos iniciales y carga manual
 
-Los datos hasta el 12 de Abril fueron recopilados manualmente.
-El procedimiento y fuentes de informacion estan destallados en **[este](/fuentes-de-datos-y-procedimiento.md)** documento.
+Los datos hasta el 15 de Abril fueron recopilados manualmente.
+El procedimiento y fuentes de informacion estan detallados en **[este](/fuentes-de-datos-y-procedimiento.md)** documento.
 
+<!--
 ## Actualizacion automatica
 
 Evaluamos varias fuentes de datos:
@@ -23,8 +24,8 @@ Evaluamos varias fuentes de datos:
 - https://github.com/SistemasMapache/Covid19arData
 - https://es.wikipedia.org/wiki/Pandemia_de_enfermedad_por_coronavirus_de_2020_en_Argentina
 
-En principio vamos estar usando la web de [Wikipedia Coronavirus Argentina](https://es.wikipedia.org/wiki/Pandemia_de_enfermedad_por_coronavirus_de_2020_en_Argentina) mientras encontramos la mejor manera de parsear los pdf a partir de los que informa el Ministerio de Salud.
-
+En principio usamos la web de [Wikipedia Coronavirus Argentina](https://es.wikipedia.org/wiki/Pandemia_de_enfermedad_por_coronavirus_de_2020_en_Argentina) mientras encontramos la mejor manera de parsear los pdf a partir de los que informa el Ministerio de Salud.
+-->
 ## API
 
 Esta hecha en python con [FastApi](https://fastapi.tiangolo.com/)
