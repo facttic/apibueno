@@ -13,6 +13,14 @@ from ...utils import date as date_util
 from . import LocationService
 
 
+def map_totals(totals):
+    accum = 0
+    accum_totals = []
+    for date, amount in totals:
+        accum += int(amount or 0)
+        accum_totals.append((date, accum))
+    return accum_totals
+
 class LocalLocationService(LocationService):
     """
     Servicio para traer lugares desde el repositorio local repository(https://github.com/facttic/apibueno).
@@ -39,9 +47,11 @@ BASE_DIR = (
 
 
 @cached(cache=TTLCache(maxsize=1024, ttl=3600))
-async def get_category(category):
+async def get_category(category, totales = False):
     """
     Trae los datos por medio de la categoria. Los datos se cachean por 1 hora.
+    Si se pasa totales=True, los datos son los acumulados hasta esa fecha
+    Por defecto los datos se muestran como los valores nuevos para cada fecha
 
     :returns: Los datos de la categoria.
     :rtype: dict
@@ -64,9 +74,11 @@ async def get_category(category):
     for item in data:
         # Filter out all the dates.
         dates = dict(filter(lambda element: date_util.is_date(element[0]), item.items()))
-
+        values = dates.items()
+        if totales:
+            values = map_totals(values)
         # Make location history from dates.
-        history = {date: int(amount or 0) for date, amount in dates.items()}
+        history = {date: int(amount or 0) for date, amount in values}
 
         # Country for this location.
         country = item["Country/Region"]

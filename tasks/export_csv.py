@@ -21,18 +21,43 @@ class ExportCSV:
         with open(self.export_file, "w") as c:
             export = csv.writer(c)
             items = []
-            header = ['Provincia', 'Dia', 'Confirmados', 'Muertes', 'Recuperados']
+            header = [
+                'Provincia',
+                'Dia',
+                'Confirmados',
+                'Muertes',
+                'Recuperados',
+                'Total Confirmados',
+                'Total Muertes',
+                'Total Recuperados'
+            ]
             for i, row in enumerate(confirmed_read):
                 if i == 0:
                     days = row[4:]
                     export.writerow(header)
                 else:
                     province = row[0]
+                    confirmed_total = 0
+                    deaths_total = 0
+                    recovered_total = 0
                     for j, day in enumerate(row[4:]):
                         confirmed_row = day
                         deaths_row = deaths_read[i][j+4]
                         recovered_row = recovered_read[i][j+4]
-                        item = [province, days[j], confirmed_row, deaths_row, recovered_row]
+                        # totals
+                        confirmed_total += int(confirmed_row)
+                        deaths_total += int(deaths_row)
+                        recovered_total += int(recovered_row)
+                        item = [
+                            province,
+                            days[j],
+                            confirmed_row,
+                            deaths_row,
+                            recovered_row,
+                            confirmed_total,
+                            deaths_total,
+                            recovered_total
+                        ]
                         items.append(item)
             export.writerows(items)
 
