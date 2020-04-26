@@ -45,6 +45,53 @@ BASE_DIR = (
     "app/data/"
 )
 
+def latlong(province):
+    latlongs = {
+        "Provincia de Buenos Aires": (-34.603722,-58.381592),
+        "Catamarca": (-27.1910825,-67.105374),
+        "Chaco": (-26.3829647,-60.8816092),
+        "Chubut": (-43.7128356,-68.7461817),
+        "Córdoba": (-31.4173391,-64.183319),
+        "Corrientes": (-28.5912315,-57.9394658),
+        "Formosa": (-24.5955306,-60.4289718),
+        "Jujuy": (-23.3161458,-65.7595288),
+        "Mendoza": (-34.7871961,-68.4380712),
+        "Misiones": (-26.737224,-54.4315257),
+        "Neuquén": (-38.3695057,-69.832275),
+        "Salta": (-25.1076701,-64.3494964),
+        "Tucumán": (-26.5643582,-64.882397),
+        "Entre Ríos": (-31.6252842,-59.3539578),
+        "La Pampa": (-36.6148,-64.2849),
+        "La Rioja": (-29.9729781,-67.0487944),
+        "Río Negro": (-40.4811973,-67.6145911),
+        "San Juan": (-30.7054363,-69.1988222),
+        "San Luis": (-33.2762202,-65.9515546),
+        "Santa Cruz": (-48.5693327,-70.1606767),
+        "Santa Fe": (-30.3154739,-61.1645076),
+        "Santiago del Estero": (-27.6431016,-63.5408542),
+        "Tierra del Fuego, Antártida e Islas del Atlántico Sur": (-54.4071064,-67.8974895),
+        "Ciudad Autónoma de Buenos Aires": (-34.6131516,-58.3772316)
+    }
+    return latlongs[province]
+
+
+def group_by_province(rows, category, totals=False):
+    provinces = {}
+    categories = {
+        "deaths": "Muertes",
+        "recovered": "Recuperados",
+        "confirmed": "Confirmados"
+    }
+    val_to_use = categories[category]
+    if totals:
+        val_to_use = "Total " + categories[category]
+    for row in rows:
+        province = row['Provincia']
+        province_vals = provinces.get(province, {})
+        province_vals[row['Dia']] = row[val_to_use]
+        provinces[province] = province_vals
+    return provinces
+
 
 @cached(cache=TTLCache(maxsize=1024, ttl=3600))
 async def get_category(category, totales = False):
@@ -61,30 +108,29 @@ async def get_category(category, totales = False):
     category = category.lower()
 
     # DIR to get data from.
-    dir = BASE_DIR + "time_series_%s.csv" % category
+    dir = BASE_DIR + "time_series_export.csv"
 
     # Open the file
     with open(dir, mode='r') as csv_file:
         # Parse the CSV.
-        data = list(csv.DictReader(csv_file))
+        rows = list(csv.DictReader(csv_file))
+
+    data = group_by_province(rows, category, totales)
 
     # The normalized locations.
     locations = []
 
-    for item in data:
-        # Filter out all the dates.
-        dates = dict(filter(lambda element: date_util.is_date(element[0]), item.items()))
-        values = dates.items()
-        if totales:
-            values = map_totals(values)
+    for name, dates in data.items():
         # Make location history from dates.
-        history = {date: int(amount or 0) for date, amount in values}
+        history = {date: int(amount or 0) for date, amount in dates.items()}
 
         # Country for this location.
-        country = item["Country/Region"]
+        country = "Argentina"
 
         # Latest data insert value.
         latest = list(history.values())[-1]
+
+        (lat, long) = latlong(name)
 
         # Normalize the item and append to locations.
         locations.append(
@@ -92,9 +138,9 @@ async def get_category(category, totales = False):
                 # General info.
                 "pais": country,
                 "codigo_pais": countries.country_code(country),
-                "provincia": item["Province/State"],
+                "provincia": name,
                 # Coordinates.
-                "coordenadas": {"latitude": item["Lat"], "longitude": item["Long"]},
+                "coordenadas": {"latitude": lat, "longitude": long},
                 # History.
                 "historico": history,
                 # Latest statistic.
