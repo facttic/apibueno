@@ -187,6 +187,7 @@ class AddEntry:
         return answers
 
     def process(self):
+        self.pull()
         answers = self.parseInput()
         summary = f"""
         provincia: {answers['provincia']}
@@ -207,8 +208,11 @@ class AddEntry:
         else:
             print("Abortando. Empezá de vuelta")
 
-    def commit(self, summary):
+    def pull(self):
         run("git checkout data-entry")
+        run("git pull")
+
+    def commit(self, summary):
         run("git pull")
         run(f"git add {self.all_file}")
         run(f"git commit -m '{summary}'")
