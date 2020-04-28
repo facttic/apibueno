@@ -16,9 +16,9 @@ sed -i 1d time_series_export.csv
 # Sets data format to read correctly from csv
 # runs inserts from local CSV file
 psql -h $host -p 5432 -U $user $db  << EOF
-TRUNCATE TABLE covid;
+TRUNCATE TABLE covid_timeseries;
 SET datestyle = mdy;
-\copy "covid" FROM 'time_series_export.csv' CSV;
+\copy "covid_timeseries" FROM 'time_series_export.csv' CSV;
 EOF
 ###
 
