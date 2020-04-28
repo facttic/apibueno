@@ -62,7 +62,7 @@ PROVINCIAS = [
 class AddEntry:
     def __init__(self):
         self.data_folder = "app/data"
-        self.all_file = os.path.join(self.data_folder, "time_series_export.csv")
+        self.entry_file = os.path.join(self.data_folder, "time_series_export.csv")
         self.process()
 
     def find_row(self, province, date, rows):
@@ -112,7 +112,7 @@ class AddEntry:
             "Total Muertes",
             "Total Recuperados",
         ]
-        rows = list(csv.DictReader(open(self.all_file, "r")))
+        rows = list(csv.DictReader(open(self.entry_file, "r")))
         day = f"{answers['mes']}/{answers['dia']}/{answers['año']}"
 
         row = self.find_row(answers['provincia'], day, rows)
@@ -125,7 +125,7 @@ class AddEntry:
             row = self.new_row(answers, day)
             rows.append(row)
 
-        with open(self.all_file, "w") as f:
+        with open(self.entry_file, "w") as f:
             writer = csv.writer(f)
             csv_rows = list(map(self.to_list, rows))
             csv_rows.sort(key=lambda _row: (_row[PROV_I], self.to_date(_row[DAY_I])))
@@ -202,11 +202,16 @@ class AddEntry:
         if confirm["yes"]:
             print("Actualizando csv...")
             self.updateCsv(answers)
-            print("Subiendo archivo...")
             self.commit(summary)
-            print("Listo!")
         else:
-            print("Abortando. Empezá de vuelta")
+            print("Abortando entrada actual.")
+        another = inquirer.prompt([inquirer.Confirm('yes', message='Desea cargar otra provincia continuar?')])
+        if another["yes"]:
+            self.process()
+        else:
+            print("Subiendo archivo...")
+            self.push()
+            print("Listo!")
 
     def pull(self):
         run("git checkout data-entry")
@@ -214,8 +219,10 @@ class AddEntry:
 
     def commit(self, summary):
         run("git pull")
-        run(f"git add {self.all_file}")
+        run(f"git add {self.entry_file}")
         run(f"git commit -m '{summary}'")
+
+    def push(self):
         run("git push")
 
     def parse_month(self, month):
