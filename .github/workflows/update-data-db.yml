@@ -1,0 +1,32 @@
+name: Update data in database
+# This workflow is triggered on pushes to master (when a PR is merged) that include changes in the app/data directory.
+on:
+  push:
+    branches:
+      - master
+    paths: 
+      - 'app/data/*'
+jobs:
+  build:
+    name: Generate data and update db
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.x'
+        architecture: 'x64'
+    - name: Pipenv
+      uses: dschep/install-pipenv-action@v1
+    - name: Set environment and update data in DB
+      run: |
+        pipenv install --dev
+        pipenv run export
+        cd app/data
+        sed -i 1d time_series_export.csv
+        PGPASSWORD=${{ secrets.DB_PASS }} psql -h ${{ secrets.DB_HOST }} -p 5432 -U ${{ secrets.DB_USER }} ${{ secrets.DB_NAME }}  << EOF
+        TRUNCATE TABLE covid_timeseries;
+        SET datestyle = mdy;
+        \copy "covid_timeseries" FROM 'time_series_export.csv' CSV;
+        EOF
