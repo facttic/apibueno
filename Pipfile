@@ -10,7 +10,7 @@ asyncmock = "*"
 bandit = "*"
 black = "==19.10b0"
 coveralls = "*"
-importlib-metadata = {version="*", markers="python_version<'3.8'"}
+importlib-metadata = {version = "*",markers = "python_version<'3.8'"}
 invoke = "*"
 isort = "*"
 pylint = "*"
@@ -22,16 +22,17 @@ pytest-cov = "*"
 aiohttp = "*"
 asyncache = "*"
 cachetools = "*"
-dataclasses = {version="*", markers="python_version<'3.7'"}
+dataclasses = {version = "*",markers = "python_version<'3.7'"}
 fastapi = "*"
 gunicorn = "*"
-idna_ssl = {version="*", markers="python_version<'3.7'"}
+idna_ssl = {version = "*",markers = "python_version<'3.7'"}
 python-dateutil = "*"
 python-dotenv = "*"
 requests = "*"
 uvicorn = "*"
 apscheduler = "==3.6.3"
 beautifulsoup4 = "==4.9.0"
+inquirer = "*"
 
 [requires]
 python_version = "3.8"
@@ -46,3 +47,4 @@ test = "invoke test"
 schedule = "invoke schedule"
 scraping = "invoke scraping"
 export = "invoke export"
+entry = "python tasks/entry.py"
