@@ -4,8 +4,6 @@ host=$1
 user=$2
 db=$3
 
-# Generates the last version of the csv
-pipenv run export
 cd app/data
 # removes the first line (column names)
 sed -i 1d time_series_export.csv
