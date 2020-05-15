@@ -8238,7 +8238,7 @@ h3 {
   }
 }
 .container {
-  max-width: 1605px;
+  max-width: 1400px;
 }
 @media screen and (max-width: 992px) {
   .container {
@@ -8338,8 +8338,10 @@ a.navbar-brand:hover {
 }
 
 section {
-  margin-top: 55px;
-  margin-bottom: 55px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 section > .row:last-child div[class*=col] {
   margin-bottom: 0 !important;

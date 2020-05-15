@@ -1,6 +1,7 @@
 # COVID-19 API Landing page
 
 Landing page of COVID-19 API built in HTML5.
+:point_right: El sitio se encuentra disponible en **https://tobias-irigoyen.github.io/landing-api-covid/** :point_left: 
 
 ## Technologies
 - HTML5
