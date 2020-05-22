@@ -8477,7 +8477,7 @@ nav.top-nav a .navbar-brand svg * {
 }
 @media screen and (max-width: 576px) {
   nav.top-nav .navbar-toggler-icon {
-    font-size: 2rem !important;
+    font-size: 1.5rem !important;
   }
 }
 nav.top-nav .navbar-toggler[aria-expanded=false] .navbar-toggler-icon {
@@ -8554,7 +8554,13 @@ header {
     padding-right: 20px;
   }
 }
-@media screen and (max-width: 768px) and (max-width: 993px) and (max-width: 1199px) {
+@media screen and (max-width: 768px) and (max-width: 576px) {
+  header .api-screen a.btn {
+    display: block;
+    width: 100% !important;
+  }
+}
+@media screen and (max-width: 768px) and (min-width: 993px) and (max-width: 1199px) {
   header .api-screen {
     background-size: 150%, cover;
   }

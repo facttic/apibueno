@@ -215,7 +215,7 @@
     }
     @media screen and (max-width: 576px) {       
         .navbar-toggler-icon {
-            font-size: 2rem!important;
+            font-size: 1.5rem!important;
         }
     }
     .navbar-toggler[aria-expanded="false"]{
@@ -297,10 +297,14 @@ header {
                 padding-left: 20px;
                 padding-right: 20px;
             }
-            @media screen and (max-width: 993px) and (max-width: 1199px) { 
+            @media screen and (max-width: 576px) { 
+                a.btn {
+                    display: block;
+                    width: 100%!important;
+                }
+            }
+            @media screen and (min-width: 993px) and (max-width: 1199px) { 
                 background-size: 150%, cover;
-
-
             }
         }
     }
