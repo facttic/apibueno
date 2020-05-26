@@ -34,35 +34,35 @@
   </head>
 
   <body data-spy="scroll" data-target="#main-navbar">
-
     <nav id="main-navbar" class="navbar navbar-expand-xl top-nav sticky-top">
       <div class="container">
-        <a class="navbar-brand" href="#"><img class="logo" src="img/logo-header.svg" alt="logo" height="60"></a>
+        <a class="navbar-brand" href="#"><img class="logo" src="img/logo-header.svg" alt="logo" width="236"></a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#mob-navbar" aria-controls="mob-navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="navbar-collapse collapse" id="mob-navbar">
-          <ul class="navbar-nav ml-auto">          
-            <li class="nav-item mx-3"><a class="d-md-inline-block nav-link" href="#">El proyecto</a></li>
+          <ul class="navbar-nav ml-auto text-center">          
+            <li class="nav-item mx-3"><a class="d-md-inline-block nav-link" href="#el-proyecto">El proyecto</a></li>
             <li class="nav-item mx-3"><a class="d-md-inline-block nav-link" href="#visualizaciones">Visualizaciones</a></li>
             <li class="nav-item mx-3"><a class="d-md-inline-block nav-link" href="#tecnologias">Tecnologías</a></li>
             <li class="nav-item mx-3"><a class="d-md-inline-block nav-link" href="#origen-de-datos">Origen de datos</a></li>
-            <li class="nav-item ml-3"><a class="d-md-inline-block btn primary-btn" href="https://github.com/facttic/apibueno">Colaborá</a></li>
+            <li class="nav-item mx-3 mt-2 mt-lg-0"><a class="d-md-inline-block btn primary-btn" href="https://github.com/facttic/apibueno">Colaborá</a></li>
           </ul>
         </div>
       </div>
     </nav>
+    
     <header class="curved-bottom">
       <div class="jumbotron-fluid">
         <div class="container">
           <div class="row position-relative">
-            <div class="intro col-md-3 my-3 my-lg-5">
+            <div class="intro col-md-3 my-3 my-lg-4">
               <h1 class="mt-lg-5 mb-lg-4 pt-lg-5">API COVID-19</h1>
               <p class="mb-lg-5">Es una API consumible por aplicaciones para el seguimiento de la pandemia del Coronavirus en Argentina.</p>
-              <a class="btn primary-btn" href="#visualizaciones">Conocé más</a>
+              <a class="btn primary-btn" href="#el-proyecto">Conocé más</a>
             </div>
-            <div class="api-screen col-md-5 my-3 my-lg-5 ml-auto ">
+            <div class="api-screen col-md-5 my-3 my-lg-4 ml-auto ">
               <img src="img/api-screen.svg" class="mb-2" alt="API screenshot" />
               <a class="btn primary-btn my-3 my-lg-5 mr-lg-4" href="https://apibueno.herokuapp.com/">Probá la API</a> 
               <a class="btn secondary-btn my-3 my-lg-5" href="https://github.com/facttic/apibueno/">Ver en 
@@ -74,53 +74,77 @@
       </div>
     </header>
 
+      <section id="el-proyecto">
+        <div class="container">
+          <div class="row my-3 my-lg-4">
+            <div class="col-md-5 mr-auto my-3 my-lg-4">
+              <h2 class="bordered-heading primary-border-bottom border-centered position-relative">El proyecto</h2>
+              <p>Durante los días de Semana Santa 2020, la <a href="https://facttic.org.ar" target="_blank">Federación Argentina de Cooperativas de Tecnología Innovación y Conocimiento <abbr title="Federacion Argentina de Cooperativas de Trabajo de Tecnologia Innovacion y Conocimiento"> (FACTTIC)</abbr></a>, organizó un Hackathon virtual llamado "HackTic": un encuentro de programadorxs pertenecientes a las distintas coperativas, cuyo objetivo fue el desarrollo colaborativo de software. </p>
+              <p>A lo largo del encuentro, tres equipos de desarrollo autogestionados trabajaron durante cuatro días en el desarrollo de tres ideas diferentes, una de ellas dió lugar a esta plataforma de visualización de datos referidos al impacto del COVID-19 en las provincias de la República Argentina.</p>
+            </div>
+            <div class="col-md-7 my-3 my-lg-4 text-center">
+              <img height="300" src="img/hacktick.svg" alt="hacktick" />
+            </div>
+          </div>
+
+          <div class="row my-3 my-lg-4 flex-column-reverse flex-sm-column-reverse flex-md-row flex-lg-row">
+            <div class="col-md-7 my-3 my-lg-4">
+              <img height="275" src="img/fit-logo.svg" alt="Flujo Intercooperativo de Trabajo" />
+            </div>            
+            <div class="col-md-5 ml-auto my-3 my-lg-4">
+              <h3 class="bordered-heading primary-border-bottom position-relative">Sobre el <abbr title='Flujo Intercooperativo de Trabajo'>FIT</abbr></h3>
+              <p>Si bien este proyecto es una experiencia más de trabajo colaborativo entre las cooperativas de la federación, no es una acción aislada. Las cooperativas de <a target="_blank" href="https://facttic.org.ar"><abbr title="Federacion Argentina de Cooperativas de Trabajo de Tecnologia Innovacion y Conocimiento"> FACTTIC</abbr></a> trabajan en equipo desde el inicio de la red para desarrollar proyectos en conjunto con objetivos sociales y comerciales, basando su accionar en el siguiente principio: <i>"Cooperar es mejor que competir."</i></p> 
+              <p>Para más información de trabajos colaborativos, te invitamos a <a target="_blank" href="https://facttic.org.ar/fit/">leer más</a> acerca del <a target="_blank" href="https://facttic.org.ar/fit/"><abbr title='Flujo Intercooperativo de Trabajo'>FIT</abbr></a>, el área de vinculación cooperativa de la federación.</p>              
+            </div>
+          </div>        
+        </div>
+      </section>
+
       <section id="visualizaciones">
         <h2 class="sr-only">Visualizaciones</h2>
           <div class="container">
-            <div class="row my-5">
-              <div class="col-md-7 my-3 my-lg-5">
+            <div class="row my-3 my-lg-4 flex-column-reverse flex-sm-column-reverse flex-md-row flex-lg-row">
+              <div class="col-md-7 my-3 my-lg-4">
                 <div class="graphic">
-                  <iframe
+                  <!--iframe
                     src="https://apibueno-dashboard.herokuapp.com/public/question/c5fa0f4a-84c2-48b2-b1b1-c6c8d3b6af79"
                     class="shadow graphic"
                     width="800"
                     height="600"
-                ></iframe>
+                ></iframe-->
                 </div>        
-              </div>
-              
-              <div class="col-md-4 ml-auto my-3 my-lg-5">
+              </div>              
+              <div class="col-md-4 ml-auto my-3 my-lg-4">
                 <h3 class="bordered-heading primary-border-bottom position-relative">Confirmados por Provincia</h3>
                 <p>Una comparativa del total de casos confirmados por provincia.</p>
               </div>
             </div>
 
-            <div class="row my-5">
-              <div class="col-md-4 mr-auto my-3 my-lg-5">
+            <div class="row my-3 my-lg-4">
+              <div class="col-md-4 mr-auto my-3 my-lg-4">
                 <h3 class="bordered-heading primary-border-bottom position-relative">Evolución de casos confirmados</h3>
                 <p>Elegí una provincia en el selector del gráfico para ver los casos nuevos de Coronavirus por día.</p>
               </div>
-              <div class="col-md-7 my-3 my-lg-5">
-                <iframe
+              <div class="col-md-7 my-3 my-lg-4">
+                <!--iframe
                   src="https://apibueno-dashboard.herokuapp.com/public/question/35107a89-4741-486e-bb13-08d1962d6d6e"
                   class="shadow graphic"
                   width="800"
                   height="600"
-              ></iframe>
+              ></iframe-->
               </div>
             </div>
           </div>
-
           <div class="jumbotron fluid more-graphics curved-top curved-bottom">
             <div class="container">
-              <div class="row my-lg-5">
+              <div class="row my-3 my-lg-4">
                 <div class="col-md-4 my-3 mt-lg-5 mb-lg-4">
                   <h3 class="accent-color mb-lg-2">Múltiples posiblilidades
                     para visualizar datos</h3>
                   <p class="mb-lg-5">Existen diferentes tipos de gráficos para ver la información que ofrece la API.</p>
                   <a class="btn primary-btn" href="https://apibueno-dashboard.herokuapp.com/public/dashboard/89e76543-e0db-49e9-832e-875995379b68">Ver más gráficos</a>
                 </div>
-                <div class="col-md-6 my-3 my-lg-5 ml-auto">
+                <div class="col-md-6 my-3 my-lg-4 ml-auto">
                   <img src="img/moregraphics.png" alt="más gráficos" />
                 </div>
               </div> 
@@ -131,26 +155,26 @@
       <section id="tecnologias">
         <h2 class="sr-only">Tecnologías utilizadas</h2>
         <div class="container">
-          <div class="row align-items-center my-lg-5">
-            <div class="col-md-6 my-3 my-lg-5">
+          <div class="row align-items-center my-3 my-lg-4 flex-column-reversemy-5 flex-column-reverse flex-sm-column-reverse flex-md-row flex-lg-row">
+            <div class="col-md-6 my-3 my-lg-4">
               <div class="text-center text-md-left text-lg-left">
                 <img src="img/fastAPI-logo.svg" class="tech-logo shadow" alt="FastAPI" />
               </div>        
             </div>
-            <div class="col-md-4 ml-auto my-3 my-lg-5">
+            <div class="col-md-4 ml-auto my-3 my-lg-4">
               <h3 class="bordered-heading primary-border-bottom position-relative">FastAPI</h3>
-              <p>Es un Framework Open Source para construir APIs desarrollado en Python utilizando las anotaciones de <a href="https://docs.python.org/3/library/typing.html">tipado estándar</a>. Entre sus características principales se destacan: Performance, llega a estar a la par de Nodejs y Go, <a href="https://fastapi.tiangolo.com/benchmarks/">benchmarks</a>; Fácil e Intuitivo, similar a <a href="https://palletsprojects.com/p/flask/">Flask</a> agrega pocas dependencias y boilerplate para la creación de endpoints; Comunicabilidad, por defecto sigue prácticas comunes de documentación de APIs como <a href="https://github.com/OAI/OpenAPI-Specification">OpenAPI</a> y <a href="http://json-schema.org/">JSON Schema</a>.</p>
-                <p>Pueden encontrar más información en su <a href="https://github.com/tiangolo/fastapi">repositorio</a>.</p>
+              <p>Es un Framework Open Source para construir APIs desarrollado en Python utilizando las anotaciones de <a href="https://docs.python.org/3/library/typing.html" target="_blank">tipado estándar</a>. Entre sus características principales se destacan: Performance, llega a estar a la par de Nodejs y Go, <a href="https://fastapi.tiangolo.com/benchmarks/" target="_blank">benchmarks</a>; Fácil e Intuitivo, similar a <a href="https://palletsprojects.com/p/flask/">Flask</a> agrega pocas dependencias y boilerplate para la creación de endpoints; Comunicabilidad, por defecto sigue prácticas comunes de documentación de APIs como <a href="https://github.com/OAI/OpenAPI-Specification" target="_blank">OpenAPI</a> y <a href="http://json-schema.org/">JSON Schema</a>.</p>
+                <p>Pueden encontrar más información en su <a href="https://github.com/tiangolo/fastapi" target="_blank">repositorio</a>.</p>
             </div>
           </div>
         
           <div class="row align-items-center my-lg-5">
-            <div class="col-md-4 my-3 my-lg-5">
+            <div class="col-md-4 my-3 my-lg-4">
               <h3 class="bordered-heading primary-border-bottom position-relative">Metabase</h3>
-              <p>Es una herramienta Open Source para realizar <a href="https://en.wikipedia.org/wiki/Business_intelligence">Business Intelligence</a>, permite hacer un análisis y gráficos de tus datos en múltiples formatos. Además, cuenta con un amplio set de gráficos por defecto como gráficos de barras, tortas e incluso mapas y provincias. </p>
+              <p>Es una herramienta Open Source para realizar <a href="https://en.wikipedia.org/wiki/Business_intelligence" target="_blank">Business Intelligence</a>, permite hacer un análisis y gráficos de tus datos en múltiples formatos. Además, cuenta con un amplio set de gráficos por defecto como gráficos de barras, tortas e incluso mapas y provincias. </p>
               <p>La manera de analizar los datos es a través de preguntas, las cuáles pueden ser creadas a partir de consultas SQL o guiado por su wizard personalizado de consultas comunes. Estas preguntas, tienen asociadas un gráfico que puede ser compartido a través de una URL. Pueden encontrar más información en su <a href="https://www.metabase.com/">página principal</a>.</p>
             </div>
-            <div class="col-md-6 my-3 my-lg-5 ml-auto">
+            <div class="col-md-6 my-3 my-lg-4 ml-auto">
               <div class="text-center text-md-right text-lg-right">
                 <img src="img/metabase-logo.svg" alt="Metabase" />
               </div>        
@@ -161,7 +185,7 @@
 
       <section id="origen-de-datos">
         <div class="container">
-          <div class="row my-lg-5">
+          <div class="row my-3 my-lg-4">
             <div class="col-12 col-md-6 m-auto text-center">
               <h2 class="bordered-heading primary-border-bottom border-centered position-relative">Origen de los datos</h2>
               <p>Los datos de personas infectadas y fallecidas, provienen de <a href="https://www.argentina.gob.ar/coronavirus/informe-diario">los informes diarios, matutino y vespertino, del Ministerio de Salud de la Nación</a>. Los datos de personas <strong>recuperadas</strong>, se obtienen de la información provista por cada provincia, a través de <a href="https://github.com/facttic/apibueno/blob/master/fuentes-de-datos-y-procedimiento.md">sus canales oficiales de comunicación: sitios oficiales y canales de prensa</a>.</p>
@@ -178,8 +202,7 @@
                   <p class="card-text">Se consulta el reporte diario que brinda el Ministerio de Salud de Argentina.</p>
                 </div>
               </div>
-            </div>
-      
+            </div>      
             <div class="col-sm-12 col-md-6 col-lg-6">
               <div class="card text-center primary-border-bottom shadow ml-lg-4 mr-lg-auto my-lg-0 mx-auto my-4">
                 <img class="mx-auto mb-2" src="img/silueta-argentina.svg" alt="Silueta Argentina">
@@ -197,13 +220,15 @@
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-12 text-center">
-            <img class="footer-logo mt-4 mb-3" src="img/logo-footer.svg" alt="logo" height="60" />
+            <a href="#" class="footer-logo">
+              <img class="mt-4 mb-3" src="img/logo-footer.svg" alt="logo" height="60" />
+            </a>
             <p class="help text-muted w-25 mx-auto mb-4">¿Necesitás ayuda para implementar la API? <br />Desde <a href="https://facttic.org.ar"><abbr title="Federacion Argentina de Cooperativas de Trabajo de Tecnologia Innovacion y Conocimiento">FACTTIC</abbr></a> te ayudamos.</p>
             <a class="btn secondary-btn mb-5" href="https://facttic.org.ar">Hacé clic acá</a>
             <h4 class="sr-only">Secciones</h4>
             <nav class="mb-5 footer-navbar">
               <ul class="text-small mb-0">
-                <li class="my-3 d-inline-block"><a class="nav-link accent-color" href="#">El proyecto</a></li>
+                <li class="my-3 d-inline-block"><a class="nav-link accent-color" href="#el-proyecto">El proyecto</a></li>
                 <li class="my-3 d-inline-block"><a class="nav-link accent-color" href="#visualizaciones">Visualizaciones</a></li>
                 <li class="my-3 d-inline-block"><a class="nav-link accent-color" href="#tecnologias">Tecnologías</a></li>
                 <li class="my-3 d-inline-block"><a class="nav-link accent-color" href="#origen-de-datos">Origen de datos</a></li>
@@ -211,7 +236,6 @@
               </ul>
             </nav>
           </div>
-
           <div class="col-12 col-md-12 text-center mx-auto mt-2">
             <small class="d-block text-muted made-with"><span>&lt;/&gt;</span> con <span class="accent-color">♥</span> por cooperativistas</small>
             <img class="d-block mx-auto mt-5 mb-3" height="20" src="img/licence.png" alt="licencia Atribución-CompartirIgual 4.0 Internacional (CC BY-SA 4.0)" />
@@ -229,6 +253,9 @@
       $( document ).ready(function() {
         $('body').scrollspy({ target: '#main-navbar' })
       });   
+      $('.navbar-collapse a').click(function(){
+            $(".navbar-collapse").collapse('hide');
+      });
     </script>
   </body>
 </html>
