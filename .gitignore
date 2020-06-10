@@ -71,3 +71,6 @@ target/
 # IntelliJ/Pycharm
 .idea/
 *swp
+
+# Landing
+landing/node_modules
