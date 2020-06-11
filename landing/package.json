@@ -1,0 +1,18 @@
+{
+  "name": "api-bueno-landing",
+  "version": "1.0.0",
+  "description": "Landing page for API Bueno",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/facttic/apibueno.git"
+  },
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "sass": "sass scss:dist/css",
+    "start": "npm run sass && node app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "sass": "^1.26.8"
+  }
+}
