@@ -24,7 +24,7 @@ jobs:
         pipenv install --dev
         cd app/data
         sed -i 1d time_series_export.csv
-        PGPASSWORD=${{ secrets.DB_PASS }} psql "sslmode=disable dbname=${{ secrets.DB_NAME }} user=${{ secrets.DB_USER }} hostaddr=${{ secrets.DB_HOST }}" << EOF
+        psql postgres://${{ secrets.DB_NAME }}:${{ secrets.DB_PASS }}@${{ secrets.DB_HOST }}/${{ secrets.DB_USER }} "sslmode=disable" << EOF
         TRUNCATE TABLE covid_timeseries;
         SET datestyle = mdy;
         \copy "covid_timeseries" FROM 'time_series_export.csv' CSV;
